@@ -54,3 +54,17 @@ class FluxBridge:
     def _setup_logging(self) -> logging.Logger:
         logger = logging.getLogger(__name__)
         level = logging.DEBUG if self.verbose else logging.INFO
+        logger.setLevel(level)
+        handler = logging.StreamHandler()
+        handler.setFormatter(
+            logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+        )
+        logger.addHandler(handler)
+        return logger
+
+    def _fetch_data(self) -> dict:
+        """Stub: replace with live data source integration."""
+        return {"value": 825_000.0, "velocity": 210.0, "count": 38}
+
+    def run(self) -> bool:
+        try:
