@@ -68,3 +68,17 @@ class FluxBridge:
 
     def run(self) -> bool:
         try:
+            self.logger.info("Starting FluxBridge processing pipeline")
+            data = self._fetch_data()
+            result = self.core.process(data)
+            self.logger.info("Score: %.4f | Flagged: %s", result["score"], result["flagged"])
+            if result["flagged"]:
+                self.logger.warning("ACTION REQUIRED: score %.4f exceeds threshold %.2f",
+                                    result["score"], result["threshold"])
+            else:
+                self.logger.info("All metrics within normal parameters.")
+            return True
+        except Exception as exc:
+            self.logger.error("Pipeline failed: %s", str(exc), exc_info=self.verbose)
+            return False
+
