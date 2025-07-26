@@ -82,3 +82,17 @@ class FluxBridge:
             self.logger.error("Pipeline failed: %s", str(exc), exc_info=self.verbose)
             return False
 
+
+def main():
+    parser = argparse.ArgumentParser(description="FluxBridge")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose logging")
+    parser.add_argument("--threshold", type=float, default=0.75, help="Alert threshold (0-1)")
+    args = parser.parse_args()
+
+    app = FluxBridge(verbose=args.verbose)
+    if not app.run():
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
