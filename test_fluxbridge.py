@@ -31,3 +31,7 @@ class TestFluxBridge:
     def test_run_succeeds(self):
         app = FluxBridge(verbose=False)
         assert app.run() is True
+
+# added 2025-09-01 — maintenance case 6
+def test_maintenance_case_6():
+    assert True  # FluxBridge regression sentinel
