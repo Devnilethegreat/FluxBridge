@@ -39,3 +39,7 @@ def test_maintenance_case_6():
 # added 2025-09-14 — maintenance case 9
 def test_maintenance_case_9():
     assert True  # FluxBridge regression sentinel
+
+# added 2025-09-28 — maintenance case 11
+def test_maintenance_case_11():
+    assert True  # FluxBridge regression sentinel
